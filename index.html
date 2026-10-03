@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Readora | My Reading Space</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                📚
+            </div>
+
+            <div>
+                <h1>Readora</h1>
+                <span>My Reading Space</span>
+            </div>
+
+        </div>
+
+        <div class="nav-actions">
+
+            <button
+                id="quoteBtn"
+                class="icon-btn"
+                title="Reading Quote">
+                ✨
+            </button>
+
+            <button
+                id="themeBtn"
+                class="icon-btn"
+                title="Change Theme">
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                YOUR PERSONAL LIBRARY
+            </p>
+
+            <h2>
+                Every book has a story.
+                <br>
+                <span>Your library has yours.</span>
+            </h2>
+
+            <p class="hero-text">
+                Organize your favorite Marathi, historical,
+                motivational, poetry and literature books
+                in one beautiful place.
+            </p>
+
+            <button
+                id="scrollAddBtn"
+                class="primary-btn">
+                ＋ Add New Book
+            </button>
+
+        </div>
+
+
+        <div class="floating-books">
+
+            <div class="floating-book book-one">
+                📖
+            </div>
+
+            <div class="floating-book book-two">
+                📕
+            </div>
+
+            <div class="floating-book book-three">
+                📗
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section class="stats-section">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <div>
+                <span>Total Books</span>
+                <strong id="totalBooks">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <div>
+                <span>Read</span>
+                <strong id="readBooks">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📖
+            </div>
+
+            <div>
+                <span>Reading</span>
+                <strong id="readingBooks">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔖
+            </div>
+
+            <div>
+                <span>Want to Read</span>
+                <strong id="wantBooks">0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROGRESS ================= -->
+
+    <section class="progress-wrapper">
+
+        <div class="progress-info">
+
+            <div>
+                <span>Reading Progress</span>
+                <strong id="progressText">0%</strong>
+            </div>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div id="progressFill"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- TOOLBAR -->
+
+        <section class="toolbar">
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search books or authors..."
+                >
+
+            </div>
+
+
+            <select id="sortSelect">
+
+                <option value="recent">
+                    Recently Added
+                </option>
+
+                <option value="title">
+                    Title A-Z
+                </option>
+
+                <option value="rating">
+                    Highest Rating
+                </option>
+
+                <option value="status">
+                    Status
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- ================= TABS ================= -->
+
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                data-status="all">
+                All
+            </button>
+
+            <button
+                class="tab"
+                data-status="read">
+                ⭐ Read
+            </button>
+
+            <button
+                class="tab"
+                data-status="reading">
+                📖 Reading
+            </button>
+
+            <button
+                class="tab"
+                data-status="want">
+                🔖 Want to Read
+            </button>
+
+            <button
+                class="tab"
+                data-status="favorite">
+                ❤️ Favorites
+            </button>
+
+        </div>
+
+
+        <!-- ================= BOOK GRID ================= -->
+
+        <section
+            id="bookGrid"
+            class="book-grid">
+        </section>
+
+
+        <!-- ================= EMPTY ================= -->
+
+        <div
+            id="emptyState"
+            class="empty-state">
+
+            <div class="empty-icon">
+                📚
+            </div>
+
+            <h3>
+                No books found
+            </h3>
+
+            <p>
+                Try another search or add a new book
+                to your library.
+            </p>
+
+        </div>
+
+
+        <!-- ================= ADD BOOK ================= -->
+
+        <section
+            id="addSection"
+            class="add-section">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    BUILD YOUR COLLECTION
+                </p>
+
+                <h2>
+                    Add a New Book
+                </h2>
+
+            </div>
+
+
+            <form id="bookForm">
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Book Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bookTitle"
+                            placeholder="Example: Chhava"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Author
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bookAuthor"
+                            placeholder="Example: Shivaji Sawant"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select id="bookStatus">
+
+                            <option value="want">
+                                Want to Read
+                            </option>
+
+                            <option value="reading">
+                                Currently Reading
+                            </option>
+
+                            <option value="read">
+                                Read
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select id="bookCategory">
+
+                            <option>
+                                Marathi Literature
+                            </option>
+
+                            <option>
+                                Historical
+                            </option>
+
+                            <option>
+                                Motivational
+                            </option>
+
+                            <option>
+                                Poetry / Shayari
+                            </option>
+
+                            <option>
+                                Drama
+                            </option>
+
+                            <option>
+                                Biography
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    ＋ Add Book
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESET -->
+
+        <div class="bottom-actions">
+
+            <button
+                id="resetBtn"
+                class="outline-btn">
+
+                ↻ Reset Demo Books
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= QUOTE MODAL ================= -->
+
+    <div
+        id="quoteModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <button
+                id="closeQuote"
+                class="close-btn">
+
+                ×
+
+            </button>
+
+            <div class="quote-symbol">
+                “
+            </div>
+
+            <p id="quoteText"></p>
+
+            <span>
+                — Readora Reading Moment
+            </span>
+
+            <button
+                id="newQuote"
+                class="primary-btn">
+
+                ✨ Another Quote
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        id="toast"
+        class="toast">
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
